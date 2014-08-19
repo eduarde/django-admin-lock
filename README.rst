@@ -39,18 +39,18 @@ Run syncdb and migrate command
 Usage
 *******
 
+Edit admin.py file in your app
+
 .. code-block::  python
 
-# admin.py file in your app
+    from django.contrib import admin
+    from adminlock.admin import AdminLock
 
-from django.contrib import admin
-from adminlock.admin import AdminLock
-
-from .models import YourModel
+    from .models import YourModel
 
 
-class YourModelAdmin(AdminLock):
-   pass
+    class YourModelAdmin(AdminLock):
+       pass
 
 
-admin.site.register(YourModel, YourModelAdmin)
+    admin.site.register(YourModel, YourModelAdmin)
