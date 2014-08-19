@@ -1,0 +1,19 @@
+{% extends "admin/delete_confirmation.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="g-d-c">
+    <div class="grp-group">
+        <h2>Are you sure you want unlock object: "{{ object.content_object }}" with id: {{ object.pk }} ? User {{ object.user }} may loose all his changes</h2>
+    </div>
+    <form action="" method="post">{% csrf_token %}
+        <div class="grp-module grp-submit-row grp-fixed-footer">
+            <ul>
+                <li class="grp-float-left"><a href="../" class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
+                <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-button grp-default" /></li>
+            </ul>
+            <input type="hidden" name="post" value="yes" />
+        </div>
+    </form>
+</div>
+{% endblock %}

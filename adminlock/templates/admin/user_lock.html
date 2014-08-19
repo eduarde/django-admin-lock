@@ -1,0 +1,36 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block content %}
+        <div>
+            <fieldset class="grp-module">
+                <div class="grp-row">
+                    <p class="grp-description">
+                    `{{ obj }}` is locked for edition by {{ user_lock.user }}.
+                    It will be unlocked automaticly in {{ user_lock.unlock_time|timeuntil }}.
+                    </p>
+                </div>
+                {% if force_unlock %}
+                <div class="grp-row">
+                    <p class="grp-description">
+                    You can also unlock this manually, but {{ user_lock.user }}
+                    may lose all his changes.
+                    </p>
+                </div>
+            </fieldset>
+            {% endif %}
+        </div>
+
+    <footer class="grp-module grp-submit-row grp-fixed-footer">
+        <header style="display:none"><h1>Submit Options</h1></header>
+        <ul>
+
+            <li class="grp-float-left"><a href="../" class="grp-button grp-delete-link">{% trans "Back to list" %}</a></li>
+            {% if force_unlock %}
+                <li><a href="{% url 'admin:adminlock_userlock_delete' user_lock.pk %}" class="grp-button grp-default">{% trans "Unlock" %}</a></li>
+            {% endif %}
+
+        </ul>
+    </footer>
+
+{% endblock %}
