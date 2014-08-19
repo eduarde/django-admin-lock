@@ -35,10 +35,6 @@ Run syncdb and migrate command
     python manage.py migrate
 
 
-*******
-Usage
-*******
-
 Edit admin.py file in your app
 
 .. code-block::  python
