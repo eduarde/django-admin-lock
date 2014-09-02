@@ -2,7 +2,8 @@
 Django admin lock
 ###################
 
-
+Lock admin (per object) edition for logged in user. Possible to unlock edition before time end by
+user with adminlock.add permission.
 
 *******
 Install
