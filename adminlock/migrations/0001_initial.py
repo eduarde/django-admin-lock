@@ -16,10 +16,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserLock',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(
+                    verbose_name='ID', serialize=False,
+                    auto_created=True, primary_key=True)),
                 ('object_pk', models.PositiveIntegerField()),
                 ('create_at', models.DateTimeField(auto_now_add=True)),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
+                ('content_type', models.ForeignKey(
+                    to='contenttypes.ContentType')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={

@@ -16,17 +16,17 @@ class AdminLock(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
 
-        #check if view is not locked for this user
+        # check if view is not locked for this user
         obj = self.get_object(request, unquote(object_id))
         user_lock = check_lock(obj)
         if user_lock and user_lock.user != request.user:
-            #object is locked, display proper message
+            # object is locked, display proper message
             return self.render_user_lock(request, user_lock, obj)
 
         response = super(AdminLock, self).change_view(
             request, object_id, form_url, extra_context)
 
-        #lock object for current user if there is no user_lock
+        # lock object for current user if there is no user_lock
         if not user_lock:
             make_lock(obj, request.user)
 
@@ -37,7 +37,7 @@ class AdminLock(admin.ModelAdmin):
         model = self.model
         opts = model._meta
 
-        #check if user has permision do unlock object
+        # check if user has permision do unlock object
         force_unlock = request.user.has_perm('adminlock.delete_userlock')
 
         context = {

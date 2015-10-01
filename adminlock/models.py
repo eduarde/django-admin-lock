@@ -24,4 +24,3 @@ class UserLock(models.Model):
     def unlock_time(self):
         """return time that this lock will be unlocked"""
         return self.create_at + timedelta(seconds=MAX_LOCK_TIME)
-
