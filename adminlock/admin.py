@@ -8,12 +8,11 @@ from django.utils.encoding import force_text
 from .models import UserLock
 from .utils import check_lock, make_lock
 
-
-class AdminLock(admin.ModelAdmin):
+class AdminLockMixIn(object):
     """
-    AdminLock class. Prevent from editing form by two users in same time
+    MixIn class allow to mix it with other admin classes if you want to make sure
+    that data edit in admin are not g
     """
-
     def change_view(self, request, object_id, form_url='', extra_context=None):
 
         # check if view is not locked for this user
@@ -56,6 +55,13 @@ class AdminLock(admin.ModelAdmin):
             "admin/user_lock.html",
             context,
             current_app=self.admin_site.name)
+
+
+class AdminLock(admin.ModelAdmin, AdminLockMixIn):
+    """
+    AdminLock class. Prevent from editing form by two users in same time
+    """
+    pass
 
 
 class UserLockAdmin(admin.ModelAdmin):
