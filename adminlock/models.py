@@ -1,7 +1,12 @@
 from datetime import timedelta
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.generic import GenericForeignKey
+
+try:
+    from django.contrib.contenttypes.generic import GenericForeignKey
+except ImportError:
+    from django.contrib.contenttypes.fields import GenericForeignKey
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from .conf import MAX_LOCK_TIME
