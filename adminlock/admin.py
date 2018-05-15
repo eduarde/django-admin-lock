@@ -55,8 +55,7 @@ class AdminLock(admin.ModelAdmin):
         return TemplateResponse(
             request,
             "admin/user_lock.html",
-            context,
-            current_app=self.admin_site.name)
+            context)
 
 
 class UserLockAdmin(admin.ModelAdmin):
